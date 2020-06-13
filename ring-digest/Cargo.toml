@@ -1,0 +1,25 @@
+[package]
+name = "ring-digest"
+version = "0.1.0"
+description = """
+Wappers for using the high-performance implementations of digest algorithm 
+from the *ring* crate via `Digest` trait from the `digest` crate.
+"""
+authors = ["RustCrypto Developers"]
+edition = "2018"
+license = "Apache-2.0 OR MIT"
+readme = "README.md"
+documentation = "https://docs.rs/ring-digest"
+repository = "https://github.com/RustCrypto/ring-wrappers"
+categories = ["cryptography", "no-std"]
+keywords = ["digest", "crypto", "ring"]
+
+[dependencies]
+ring = "0.16"
+digest = "0.9"
+
+[dev-dependencies]
+digest = { version = "0.9", features = ["dev"] }
+
+[badges]
+travis-ci = { repository = "RustCrypto/ring-wrappers" }

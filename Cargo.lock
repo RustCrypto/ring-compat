@@ -10,10 +10,25 @@ dependencies = [
 ]
 
 [[package]]
+name = "blobby"
+version = "0.1.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6fe5f8c2940b65859ece4b3b2ba02d2b12c87cab455fd42dee2556a187bb2cf6"
+dependencies = [
+ "byteorder",
+]
+
+[[package]]
 name = "bumpalo"
 version = "3.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2e8c087f005730276d1096a652e92a8bacee2e2472bcc9715a74d2bec38b5820"
+
+[[package]]
+name = "byteorder"
+version = "1.3.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "08c48aae112d48ed9f069b33538ea9e3e90aa263cfa3d1c24309612b1f7472de"
 
 [[package]]
 name = "cc"
@@ -26,6 +41,16 @@ name = "cfg-if"
 version = "0.1.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4785bdd1c96b2a846b2bd7cc02e86b6b3dbf14e7e53446c4f54c92a361040822"
+
+[[package]]
+name = "digest"
+version = "0.9.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d3dd60d1080a57a05ab032377049e0591415d2b31afd7028356dbf3cc6dcb066"
+dependencies = [
+ "blobby",
+ "generic-array",
+]
 
 [[package]]
 name = "generic-array"
@@ -138,6 +163,14 @@ dependencies = [
  "hex-literal",
  "ring",
  "zeroize",
+]
+
+[[package]]
+name = "ring-digest"
+version = "0.1.0"
+dependencies = [
+ "digest",
+ "ring",
 ]
 
 [[package]]
