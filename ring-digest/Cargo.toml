@@ -17,9 +17,7 @@ keywords = ["digest", "crypto", "ring"]
 [dependencies]
 ring = "0.16"
 digest = "0.9"
+opaque-debug = "0.3"
 
 [dev-dependencies]
 digest = { version = "0.9", features = ["dev"] }
-
-[badges]
-travis-ci = { repository = "RustCrypto/ring-wrappers" }

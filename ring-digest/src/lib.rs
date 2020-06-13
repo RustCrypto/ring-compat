@@ -1,12 +1,10 @@
 #![no_std]
-
-use core::fmt;
 use core::mem;
 
 pub use digest::Digest;
 use digest::{
     generic_array::{typenum::*, GenericArray},
-    impl_write, BlockInput, FixedOutput, Reset, Update,
+    BlockInput, FixedOutput, Reset, Update,
 };
 use ring::digest::Context;
 
@@ -60,13 +58,8 @@ macro_rules! impl_digest {
             }
         }
 
-        impl fmt::Debug for $name {
-            fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-                write!(f, concat!(stringify!($name), " {{ ... }}"))
-            }
-        }
-
-        impl_write!($name);
+        digest::impl_write!($name);
+        opaque_debug::implement!($name);
     };
 }
 
@@ -105,58 +98,3 @@ impl_digest!(
     U128,
     U32
 );
-
-#[cfg(test)]
-mod tests {
-    use digest::*;
-
-    use super::*;
-
-    #[test]
-    fn test_block_len() {
-        assert_eq!(
-            ring::digest::SHA1_FOR_LEGACY_USE_ONLY.block_len,
-            <Sha1 as BlockInput>::BlockSize::to_usize()
-        );
-        assert_eq!(
-            ring::digest::SHA256.block_len,
-            <Sha256 as BlockInput>::BlockSize::to_usize()
-        );
-        assert_eq!(
-            ring::digest::SHA384.block_len,
-            <Sha384 as BlockInput>::BlockSize::to_usize()
-        );
-        assert_eq!(
-            ring::digest::SHA512.block_len,
-            <Sha512 as BlockInput>::BlockSize::to_usize()
-        );
-        assert_eq!(
-            ring::digest::SHA512_256.block_len,
-            <Sha512Trunc256 as BlockInput>::BlockSize::to_usize()
-        );
-    }
-
-    #[test]
-    fn test_output_len() {
-        assert_eq!(
-            ring::digest::SHA1_FOR_LEGACY_USE_ONLY.output_len,
-            <Sha1 as FixedOutput>::OutputSize::to_usize()
-        );
-        assert_eq!(
-            ring::digest::SHA256.output_len,
-            <Sha256 as FixedOutput>::OutputSize::to_usize()
-        );
-        assert_eq!(
-            ring::digest::SHA384.output_len,
-            <Sha384 as FixedOutput>::OutputSize::to_usize()
-        );
-        assert_eq!(
-            ring::digest::SHA512.output_len,
-            <Sha512 as FixedOutput>::OutputSize::to_usize()
-        );
-        assert_eq!(
-            ring::digest::SHA512_256.output_len,
-            <Sha512Trunc256 as FixedOutput>::OutputSize::to_usize()
-        );
-    }
-}
