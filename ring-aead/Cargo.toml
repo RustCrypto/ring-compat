@@ -20,7 +20,7 @@ ring = "0.16"
 zeroize = "1"
 
 [dev-dependencies]
-hex-literal = "0.2"
+hex-literal = "0.3"
 
 [features]
 default = ["alloc"]
