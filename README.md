@@ -1,9 +1,13 @@
 # <img alt="ring-compat" src="https://raw.githubusercontent.com/RustCrypto/ring-compat/master/img/logo.png" width="450px" height = "225px">
 
-![Rust Version][rustc-image] [![Project Chat][chat-image]][chat-link]
+[![crate][crate-image]][crate-link]
+[![Docs][docs-image]][docs-link]
+![Apache2/MIT licensed][license-image]
+![Rust Version][rustc-image]
+[![Project Chat][chat-image]][chat-link]
 
 Compatibility crate for using RustCrypto's [traits] with the cryptographic
-algorithm implementations in [*ring*].
+algorithm implementations from [*ring*].
 
 [Documentation][docs-link]
 
@@ -31,6 +35,11 @@ dual licensed as above, without any additional terms or conditions.
 
 [//]: # (badges)
 
+[crate-image]: https://img.shields.io/crates/v/ring-compat.svg
+[crate-link]: https://crates.io/crates/ring-compat
+[docs-image]: https://docs.rs/ring-compat/badge.svg
+[docs-link]: https://docs.rs/ring-compat/
+[license-image]: https://img.shields.io/badge/license-Apache2.0/MIT-blue.svg
 [docs-link]: https://docs.rs/ring-compat
 [rustc-image]: https://img.shields.io/badge/rustc-1.41+-blue.svg
 [chat-image]: https://img.shields.io/badge/zulip-join_chat-blue.svg

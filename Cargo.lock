@@ -162,22 +162,15 @@ dependencies = [
 ]
 
 [[package]]
-name = "ring-aead"
-version = "0.2.0"
+name = "ring-compat"
+version = "0.0.0"
 dependencies = [
  "aead",
- "hex-literal",
- "ring",
- "zeroize",
-]
-
-[[package]]
-name = "ring-digest"
-version = "0.1.0"
-dependencies = [
  "digest",
+ "hex-literal",
  "opaque-debug",
  "ring",
+ "zeroize",
 ]
 
 [[package]]

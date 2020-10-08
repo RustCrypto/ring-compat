@@ -1,6 +1,6 @@
-use digest::{BlockInput, FixedOutput};
 use digest::generic_array::typenum::Unsigned;
-use ring_digest::*;
+use digest::{BlockInput, FixedOutput};
+use ring_compat::*;
 
 #[test]
 fn test_block_len() {
