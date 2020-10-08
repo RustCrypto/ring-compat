@@ -1,5 +1,30 @@
-[workspace]
-members = [
-    "ring-aead",
-    "ring-digest",
-]
+[package]
+name = "ring-compat"
+version = "0.0.0"
+description = """
+Compatibility crate for using RustCrypto's traits with the cryptographic
+algorithm implementations from *ring*
+"""
+authors = ["RustCrypto Developers"]
+edition = "2018"
+license = "Apache-2.0 OR MIT"
+readme = "README.md"
+documentation = "https://docs.rs/ring-compat"
+repository = "https://github.com/RustCrypto/ring-compat"
+categories = ["cryptography", "no-std"]
+keywords = ["aead", "digest", "crypto", "ring", "signature"]
+
+[dependencies]
+aead = { version = "0.3", default-features = false }
+digest = "0.9"
+opaque-debug = "0.3"
+ring = "0.16"
+zeroize = "1"
+
+[dev-dependencies]
+hex-literal = "0.2"
+digest = { version = "0.9", features = ["dev"] }
+
+[features]
+default = ["alloc"]
+alloc = ["aead/alloc"]

@@ -3,9 +3,9 @@
 //! From RFC 8439 Section 2.8.2:
 //! <https://tools.ietf.org/html/rfc8439#section-2.8.2>
 
-use ring_aead::aead::generic_array::GenericArray;
-use ring_aead::aead::{Aead, NewAead, Payload};
-use ring_aead::ChaCha20Poly1305;
+use ring_compat::aead::generic_array::GenericArray;
+use ring_compat::aead::{Aead, NewAead, Payload};
+use ring_compat::ChaCha20Poly1305;
 
 const KEY: &[u8; 32] = &[
     0x80, 0x81, 0x82, 0x83, 0x84, 0x85, 0x86, 0x87, 0x88, 0x89, 0x8a, 0x8b, 0x8c, 0x8d, 0x8e, 0x8f,
