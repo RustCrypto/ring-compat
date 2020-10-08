@@ -1,10 +1,15 @@
-# RustCrypto: *ring* compatibility ![Rust Version][rustc-image] [![Project Chat][chat-image]][chat-link]
+# <img alt="ring-compat" src="https://raw.githubusercontent.com/RustCrypto/ring-compat/master/img/logo.png" width="450px" height = "225px">
 
-Compatibility library for using [*ring*] as a backend for RustCrypto's [traits].
+![Rust Version][rustc-image] [![Project Chat][chat-image]][chat-link]
 
-### Minimum Supported Rust Version
+Compatibility crate for using RustCrypto's [traits] with the cryptographic
+algorithm implementations in [*ring*].
 
-Rust 1.41 or higher.
+[Documentation][docs-link]
+
+## Minimum Supported Rust Version
+
+**Rust 1.41** or higher.
 
 In the future the minimum supported Rust version can be changed, but it will be
 done with a minor version bump.
@@ -26,6 +31,7 @@ dual licensed as above, without any additional terms or conditions.
 
 [//]: # (badges)
 
+[docs-link]: https://docs.rs/ring-compat
 [rustc-image]: https://img.shields.io/badge/rustc-1.41+-blue.svg
 [chat-image]: https://img.shields.io/badge/zulip-join_chat-blue.svg
 [chat-link]: https://rustcrypto.zulipchat.com/#narrow/stream/260488-ring-compat
