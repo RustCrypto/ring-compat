@@ -15,17 +15,21 @@ categories = ["cryptography", "no-std"]
 keywords = ["aead", "digest", "crypto", "ring", "signature"]
 
 [dependencies]
-aead = { version = "0.3", default-features = false }
-digest = "0.9"
+aead = { version = "0.3", optional = true, default-features = false }
+digest = { version = "0.9", optional = true }
 generic-array = { version = "0.14", default-features = false }
 opaque-debug = "0.3"
-ring = "0.16"
-zeroize = "1"
+ring = { version = "0.16", default-features = false }
+zeroize = { version = "1", default-features = false }
 
 [dev-dependencies]
 hex-literal = "0.2"
 digest = { version = "0.9", features = ["dev"] }
 
 [features]
-default = ["alloc"]
+default = ["aead", "alloc", "digest"]
 alloc = ["aead/alloc"]
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]

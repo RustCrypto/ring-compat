@@ -1,9 +1,6 @@
 //! AES-256-GCM tests
 
-#[macro_use]
-mod common;
-
-use self::common::TestVector;
+use super::common::TestVector;
 use hex_literal::hex;
 use ring_compat::{
     aead::{Aead, AeadInPlace, Aes256Gcm, NewAead, Payload},
