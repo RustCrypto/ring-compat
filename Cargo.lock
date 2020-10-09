@@ -167,6 +167,7 @@ version = "0.0.1"
 dependencies = [
  "aead",
  "digest",
+ "generic-array",
  "hex-literal",
  "opaque-debug",
  "ring",
