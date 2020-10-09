@@ -1,7 +1,5 @@
 //! Digest tests
 
-#![cfg(feature = "digest")]
-
 use digest::{
     dev::{digest_test, one_million_a},
     generic_array::typenum::Unsigned,
