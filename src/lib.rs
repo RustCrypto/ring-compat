@@ -15,4 +15,8 @@ pub mod aead;
 #[cfg_attr(docsrs, doc(cfg(feature = "digest")))]
 pub mod digest;
 
+#[cfg(feature = "signature")]
+#[cfg_attr(docsrs, doc(cfg(feature = "signature")))]
+pub mod signature;
+
 pub use generic_array;
