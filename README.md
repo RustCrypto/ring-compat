@@ -2,8 +2,9 @@
 
 [![crate][crate-image]][crate-link]
 [![Docs][docs-image]][docs-link]
-![Apache2/MIT licensed][license-image]
+![Ring Version][ring-image]
 ![Rust Version][rustc-image]
+![Apache2/MIT licensed][license-image]
 [![Project Chat][chat-image]][chat-link]
 [![Build Status][build-image]][build-link]
 
@@ -40,9 +41,10 @@ dual licensed as above, without any additional terms or conditions.
 [crate-link]: https://crates.io/crates/ring-compat
 [docs-image]: https://docs.rs/ring-compat/badge.svg
 [docs-link]: https://docs.rs/ring-compat/
-[license-image]: https://img.shields.io/badge/license-Apache2.0/MIT-blue.svg
 [docs-link]: https://docs.rs/ring-compat
+[ring-image]: https://img.shields.io/badge/ring-0.16-blue.svg
 [rustc-image]: https://img.shields.io/badge/rustc-1.41+-blue.svg
+[license-image]: https://img.shields.io/badge/license-Apache2.0/MIT-blue.svg
 [chat-image]: https://img.shields.io/badge/zulip-join_chat-blue.svg
 [chat-link]: https://rustcrypto.zulipchat.com/#narrow/stream/260488-ring-compat
 [build-image]: https://github.com/RustCrypto/ring-compat/workflows/ring-compat/badge.svg?branch=master&event=push
