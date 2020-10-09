@@ -5,6 +5,7 @@
 ![Apache2/MIT licensed][license-image]
 ![Rust Version][rustc-image]
 [![Project Chat][chat-image]][chat-link]
+[![Build Status][build-image]][build-link]
 
 Compatibility crate for using RustCrypto's [traits] with the cryptographic
 algorithm implementations from [*ring*].
@@ -44,6 +45,8 @@ dual licensed as above, without any additional terms or conditions.
 [rustc-image]: https://img.shields.io/badge/rustc-1.41+-blue.svg
 [chat-image]: https://img.shields.io/badge/zulip-join_chat-blue.svg
 [chat-link]: https://rustcrypto.zulipchat.com/#narrow/stream/260488-ring-compat
+[build-image]: https://github.com/RustCrypto/ring-compat/workflows/ring-compat/badge.svg?branch=master&event=push
+[build-link]: https://github.com/RustCrypto/ring-compat/actions
 
 [//]: # (general links)
 
