@@ -1,5 +1,14 @@
-//! Compatibility crate for using RustCrypto's traits with the cryptographic
-//! algorithm implementations from *ring*
+//! Compatibility crate for using [RustCrypto traits] with the cryptographic
+//! algorithm implementations from [*ring*].
+//!
+//! Supported algorithms:
+//!
+//! - [`aead`]: AES-GCM, ChaCha20Poly1305
+//! - [`digest`]: SHA-2 family
+//! - [`signature`]: ECDSA, Ed25519
+//!
+//! [RustCrypto traits]: https://github.com/RustCrypto/traits
+//! [*ring*]: https://github.com/briansmith/ring
 
 #![no_std]
 #![cfg_attr(docsrs, feature(doc_cfg))]
