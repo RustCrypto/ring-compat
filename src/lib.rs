@@ -12,7 +12,9 @@
 
 #![no_std]
 #![cfg_attr(docsrs, feature(doc_cfg))]
-#![doc(html_logo_url = "https://raw.githubusercontent.com/RustCrypto/meta/master/logo_small.png")]
+#![doc(
+    html_logo_url = "https://raw.githubusercontent.com/RustCrypto/ring-compat/master/img/logo.png"
+)]
 #![forbid(unsafe_code)]
 #![warn(missing_docs, rust_2018_idioms)]
 
