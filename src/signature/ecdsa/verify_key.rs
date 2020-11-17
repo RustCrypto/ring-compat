@@ -41,6 +41,11 @@ where
 
         point_result.map(VerifyKey).map_err(|_| Error::new())
     }
+
+    /// Get byte slice of inner encoded point
+    pub fn as_bytes(&self) -> &[u8] {
+        self.0.as_bytes()
+    }
 }
 
 impl<C: Curve> Verifier<Signature<C>> for VerifyKey<C>
