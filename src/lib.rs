@@ -18,6 +18,9 @@
 #![forbid(unsafe_code)]
 #![warn(missing_docs, rust_2018_idioms)]
 
+#[cfg(feature = "std")]
+extern crate std;
+
 #[cfg(feature = "aead")]
 #[cfg_attr(docsrs, doc(cfg(feature = "aead")))]
 pub mod aead;

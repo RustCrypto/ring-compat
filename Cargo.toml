@@ -34,6 +34,7 @@ digest = { version = "0.9", features = ["dev"] }
 default = ["aead", "alloc", "digest", "signature"]
 alloc = ["aead/alloc"]
 signature = ["ecdsa", "ed25519", "p256", "p384"]
+std = ["digest/std"]
 
 [package.metadata.docs.rs]
 all-features = true
