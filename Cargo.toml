@@ -15,7 +15,7 @@ categories = ["cryptography", "no-std"]
 keywords = ["aead", "digest", "crypto", "ring", "signature"]
 
 [dependencies]
-aead = { version = "0.3", optional = true, default-features = false }
+aead = { version = "0.4", optional = true, default-features = false }
 digest = { version = "0.9", optional = true }
 ecdsa = { version = "0.8", optional = true, default-features = false }
 ed25519 = { version = "1", optional = true, default-features = false }
