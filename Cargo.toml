@@ -17,7 +17,7 @@ keywords = ["aead", "digest", "crypto", "ring", "signature"]
 [dependencies]
 aead = { version = "0.3", optional = true, default-features = false }
 digest = { version = "0.9", optional = true }
-ecdsa = { version = "0.8", optional = true, default-features = false }
+ecdsa = { version = "0.10", optional = true, default-features = false }
 ed25519 = { version = "1", optional = true, default-features = false }
 generic-array = { version = "0.14", default-features = false }
 opaque-debug = "0.3"
