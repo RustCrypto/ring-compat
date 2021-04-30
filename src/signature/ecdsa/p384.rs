@@ -15,7 +15,7 @@ pub type Signature = super::Signature<NistP384>;
 pub type SigningKey = super::SigningKey<NistP384>;
 
 /// ECDSA/P-384 verify key
-pub type VerifyKey = super::VerifyKey<NistP384>;
+pub type VerifyingKey = super::VerifyingKey<NistP384>;
 
 impl CurveAlg for NistP384 {
     fn signing_alg() -> &'static EcdsaSigningAlgorithm {

@@ -1,4 +1,4 @@
-//! Digital signatures: ECDSA, Ed25519
+//! Digital signatures: ECDSA (P-256/P-384), Ed25519
 
 pub mod ecdsa;
 pub mod ed25519;

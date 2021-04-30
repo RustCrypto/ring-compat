@@ -2,7 +2,7 @@
 
 use super::TestVector;
 use ring_compat::signature::{
-    ed25519::{Signature, SigningKey, VerifyKey, SIGNATURE_LENGTH},
+    ed25519::{Signature, SigningKey, VerifyingKey, SIGNATURE_LENGTH},
     Signature as _, Signer, Verifier,
 };
 
@@ -17,7 +17,7 @@ fn sign_rfc8032_test_vectors() {
 #[test]
 fn verify_rfc8032_test_vectors() {
     for vector in TEST_VECTORS {
-        let verify_key = VerifyKey::new(vector.pk).unwrap();
+        let verify_key = VerifyingKey::new(vector.pk).unwrap();
         let sig = Signature::from_bytes(vector.sig).unwrap();
         assert!(verify_key.verify(vector.msg, &sig).is_ok());
     }
@@ -26,7 +26,7 @@ fn verify_rfc8032_test_vectors() {
 #[test]
 fn rejects_tweaked_rfc8032_test_vectors() {
     for vector in TEST_VECTORS {
-        let verify_key = VerifyKey::new(vector.pk).unwrap();
+        let verify_key = VerifyingKey::new(vector.pk).unwrap();
 
         let mut tweaked_sig = [0u8; SIGNATURE_LENGTH];
         tweaked_sig.copy_from_slice(vector.sig);
