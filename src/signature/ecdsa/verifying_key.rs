@@ -1,4 +1,4 @@
-//! ECDSA verify key
+//! ECDSA verifying key
 
 use super::{Curve, CurveAlg, Signature};
 use crate::signature::{Error, Verifier};
@@ -16,23 +16,23 @@ use generic_array::{
 };
 use ring::signature::UnparsedPublicKey;
 
-/// ECDSA verify key. Generic over elliptic curves.
+/// ECDSA verifying key. Generic over elliptic curves.
 #[derive(Clone, Debug, Eq, PartialEq)]
-pub struct VerifyKey<C>(sec1::EncodedPoint<C>)
+pub struct VerifyingKey<C>(sec1::EncodedPoint<C>)
 where
     C: Curve + CurveAlg + Order,
     SignatureSize<C>: ArrayLength<u8>,
     UntaggedPointSize<C>: Add<U1> + ArrayLength<u8>,
     UncompressedPointSize<C>: ArrayLength<u8>;
 
-impl<C> VerifyKey<C>
+impl<C> VerifyingKey<C>
 where
     C: Curve + CurveAlg + Order,
     SignatureSize<C>: ArrayLength<u8>,
     UntaggedPointSize<C>: Add<U1> + ArrayLength<u8>,
     UncompressedPointSize<C>: ArrayLength<u8>,
 {
-    /// Initialize [`VerifyKey`] from a SEC1-encoded public key
+    /// Initialize [`VerifyingKey`] from a SEC1-encoded public key
     pub fn new(bytes: &[u8]) -> Result<Self, Error> {
         let point_result = if bytes.len() == C::FieldSize::to_usize() * 2 {
             Ok(sec1::EncodedPoint::from_untagged_bytes(
@@ -42,7 +42,7 @@ where
             sec1::EncodedPoint::from_bytes(bytes)
         };
 
-        point_result.map(VerifyKey).map_err(|_| Error::new())
+        point_result.map(VerifyingKey).map_err(|_| Error::new())
     }
 
     /// Get byte slice of inner encoded point
@@ -51,7 +51,7 @@ where
     }
 }
 
-impl<C: Curve> Verifier<Signature<C>> for VerifyKey<C>
+impl<C: Curve> Verifier<Signature<C>> for VerifyingKey<C>
 where
     C: Curve + CurveAlg + Order,
     SignatureSize<C>: ArrayLength<u8>,

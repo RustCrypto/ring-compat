@@ -3,11 +3,11 @@
 use crate::{ecdsa_tests, signature::TestVector};
 use core::convert::TryFrom;
 use ring_compat::signature::{
-    ecdsa::p384::{Signature, SigningKey, VerifyKey},
+    ecdsa::p384::{Signature, SigningKey, VerifyingKey},
     Signer, Verifier,
 };
 
-ecdsa_tests!(SigningKey, VerifyKey, TEST_VECTORS);
+ecdsa_tests!(SigningKey, VerifyingKey, TEST_VECTORS);
 
 /// ECDSA test vectors for the NIST P-384 elliptic curve
 ///

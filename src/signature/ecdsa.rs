@@ -6,9 +6,9 @@ pub mod p256;
 pub mod p384;
 
 mod signing_key;
-mod verify_key;
+mod verifying_key;
 
-pub use self::{signing_key::SigningKey, verify_key::VerifyKey};
+pub use self::{signing_key::SigningKey, verifying_key::VerifyingKey};
 pub use ::ecdsa::{der, elliptic_curve::weierstrass::Curve, Signature};
 
 use ring::signature::{EcdsaSigningAlgorithm, EcdsaVerificationAlgorithm};

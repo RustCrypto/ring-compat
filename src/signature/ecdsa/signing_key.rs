@@ -1,6 +1,6 @@
 //! ECDSA signing key
 
-use super::{Curve, CurveAlg, Signature, VerifyKey};
+use super::{Curve, CurveAlg, Signature, VerifyingKey};
 use crate::signature::{Error, Signature as _, Signer};
 use ::ecdsa::{
     elliptic_curve::{
@@ -61,13 +61,13 @@ where
             .map_err(|_| Error::new())
     }
 
-    /// Get the [`VerifyKey`] for this [`SigningKey`]
-    pub fn verify_key(&self) -> VerifyKey<C>
+    /// Get the [`VerifyingKey`] for this [`SigningKey`]
+    pub fn verify_key(&self) -> VerifyingKey<C>
     where
         UntaggedPointSize<C>: Add<U1> + ArrayLength<u8>,
         UncompressedPointSize<C>: ArrayLength<u8>,
     {
-        VerifyKey::new(self.keypair.public_key().as_ref()).unwrap()
+        VerifyingKey::new(self.keypair.public_key().as_ref()).unwrap()
     }
 }
 
