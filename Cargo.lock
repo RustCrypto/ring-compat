@@ -196,9 +196,9 @@ checksum = "34cf66eb183df1c5876e2dcf6b13d57340741e8dc255b48e40a26de954d06ae7"
 
 [[package]]
 name = "ring"
-version = "0.16.18"
+version = "0.16.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "70017ed5c555d79ee3538fc63ca09c70ad8f317dcadc1adc2c496b60c22bb24f"
+checksum = "3053cf52e236a3ed746dfc745aa9cacf1b791d846bdaf412f60a8d7d6e17c8fc"
 dependencies = [
  "cc",
  "libc",
