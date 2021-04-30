@@ -1,4 +1,4 @@
-//! Digest algorighthms (a.k.a. hash functions)
+//! Digest algorithms: SHA-1, SHA-256, SHA-384, SHA-512
 
 use core::mem;
 use digest::{
