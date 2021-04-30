@@ -9,7 +9,7 @@ mod signing_key;
 mod verify_key;
 
 pub use self::{signing_key::SigningKey, verify_key::VerifyKey};
-pub use ::ecdsa::{asn1, elliptic_curve::weierstrass::Curve, Signature};
+pub use ::ecdsa::{der, elliptic_curve::weierstrass::Curve, Signature};
 
 use ring::signature::{EcdsaSigningAlgorithm, EcdsaVerificationAlgorithm};
 

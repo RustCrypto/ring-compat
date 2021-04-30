@@ -1,6 +1,6 @@
-//! Authenticated Encryption with Associated Data algorithms
+//! Authenticated Encryption with Associated Data Algorithms: AES-GCM, ChaCha20Poly1305
 
-pub use aead::{AeadInPlace, Buffer, Error, NewAead};
+pub use aead::{AeadCore, AeadInPlace, Buffer, Error, NewAead};
 
 #[cfg(feature = "alloc")]
 pub use aead::{Aead, Payload};
@@ -36,11 +36,13 @@ macro_rules! impl_aead {
             }
         }
 
-        impl AeadInPlace for $cipher {
+        impl AeadCore for $cipher {
             type NonceSize = U12;
             type TagSize = U16;
             type CiphertextOverhead = U0;
+        }
 
+        impl AeadInPlace for $cipher {
             fn encrypt_in_place_detached(
                 &self,
                 nonce: &GenericArray<u8, Self::NonceSize>,

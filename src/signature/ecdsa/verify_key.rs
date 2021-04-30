@@ -3,28 +3,31 @@
 use super::{Curve, CurveAlg, Signature};
 use crate::signature::{Error, Verifier};
 use ::ecdsa::{
-    elliptic_curve::sec1::{self, UncompressedPointSize, UntaggedPointSize},
-    generic_array::{
-        typenum::{Unsigned, U1},
-        ArrayLength,
+    elliptic_curve::{
+        sec1::{self, UncompressedPointSize, UntaggedPointSize},
+        Order,
     },
-    CheckSignatureBytes, SignatureSize,
+    SignatureSize,
 };
 use core::{convert::TryInto, ops::Add};
+use generic_array::{
+    typenum::{Unsigned, U1},
+    ArrayLength,
+};
 use ring::signature::UnparsedPublicKey;
 
 /// ECDSA verify key. Generic over elliptic curves.
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct VerifyKey<C>(sec1::EncodedPoint<C>)
 where
-    C: Curve + CurveAlg + CheckSignatureBytes,
+    C: Curve + CurveAlg + Order,
     SignatureSize<C>: ArrayLength<u8>,
     UntaggedPointSize<C>: Add<U1> + ArrayLength<u8>,
     UncompressedPointSize<C>: ArrayLength<u8>;
 
 impl<C> VerifyKey<C>
 where
-    C: Curve + CurveAlg + CheckSignatureBytes,
+    C: Curve + CurveAlg + Order,
     SignatureSize<C>: ArrayLength<u8>,
     UntaggedPointSize<C>: Add<U1> + ArrayLength<u8>,
     UncompressedPointSize<C>: ArrayLength<u8>,
@@ -50,7 +53,7 @@ where
 
 impl<C: Curve> Verifier<Signature<C>> for VerifyKey<C>
 where
-    C: Curve + CurveAlg + CheckSignatureBytes,
+    C: Curve + CurveAlg + Order,
     SignatureSize<C>: ArrayLength<u8>,
     UntaggedPointSize<C>: Add<U1> + ArrayLength<u8>,
     UncompressedPointSize<C>: ArrayLength<u8>,
