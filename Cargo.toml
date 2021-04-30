@@ -1,6 +1,6 @@
 [package]
 name = "ring-compat"
-version = "0.2.0"
+version = "0.2.1"
 description = """
 Compatibility crate for using RustCrypto's traits with the cryptographic
 algorithm implementations from *ring*
