@@ -2,9 +2,9 @@
 # It is not intended for manual editing.
 [[package]]
 name = "aead"
-version = "0.4.0"
+version = "0.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8aeaececfd937b9762778f2aca063ad24fdc827c48c07aeae36fb20c03afa11a"
+checksum = "922b33332f54fc0ad13fa3e514601e8d30fb54e1f3eadc36643f6526db645621"
 dependencies = [
  "generic-array",
 ]
