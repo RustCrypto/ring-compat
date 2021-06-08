@@ -3,10 +3,7 @@
 use super::{Curve, CurveAlg, Signature, VerifyingKey};
 use crate::signature::{Error, Signature as _, Signer};
 use ::ecdsa::{
-    elliptic_curve::{
-        sec1::{UncompressedPointSize, UntaggedPointSize},
-        Order,
-    },
+    elliptic_curve::sec1::{UncompressedPointSize, UntaggedPointSize},
     SignatureSize,
 };
 use core::marker::PhantomData;
@@ -21,7 +18,7 @@ use ring::{
 /// ECDSA signing key. Generic over elliptic curves.
 pub struct SigningKey<C>
 where
-    C: Curve + CurveAlg + Order,
+    C: Curve + CurveAlg,
     SignatureSize<C>: ArrayLength<u8>,
 {
     /// *ring* ECDSA keypair
@@ -36,7 +33,7 @@ where
 
 impl<C> SigningKey<C>
 where
-    C: Curve + CurveAlg + Order,
+    C: Curve + CurveAlg,
     SignatureSize<C>: ArrayLength<u8>,
 {
     /// Initialize a [`SigningKey`] from a PKCS#8-encoded private key
@@ -73,7 +70,7 @@ where
 
 impl<C> Signer<Signature<C>> for SigningKey<C>
 where
-    C: Curve + CurveAlg + Order,
+    C: Curve + CurveAlg,
     SignatureSize<C>: ArrayLength<u8>,
 {
     fn try_sign(&self, msg: &[u8]) -> Result<Signature<C>, Error> {
