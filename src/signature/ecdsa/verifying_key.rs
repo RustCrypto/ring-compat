@@ -4,37 +4,34 @@ use super::{Curve, CurveAlg, Signature};
 use crate::signature::{Error, Verifier};
 use ::ecdsa::{
     elliptic_curve::{
+        bigint::Encoding as _,
         sec1::{self, UncompressedPointSize, UntaggedPointSize},
-        Order,
     },
     SignatureSize,
 };
 use core::{convert::TryInto, ops::Add};
-use generic_array::{
-    typenum::{Unsigned, U1},
-    ArrayLength,
-};
+use generic_array::{typenum::U1, ArrayLength};
 use ring::signature::UnparsedPublicKey;
 
 /// ECDSA verifying key. Generic over elliptic curves.
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct VerifyingKey<C>(sec1::EncodedPoint<C>)
 where
-    C: Curve + CurveAlg + Order,
+    C: Curve + CurveAlg,
     SignatureSize<C>: ArrayLength<u8>,
     UntaggedPointSize<C>: Add<U1> + ArrayLength<u8>,
     UncompressedPointSize<C>: ArrayLength<u8>;
 
 impl<C> VerifyingKey<C>
 where
-    C: Curve + CurveAlg + Order,
+    C: Curve + CurveAlg,
     SignatureSize<C>: ArrayLength<u8>,
     UntaggedPointSize<C>: Add<U1> + ArrayLength<u8>,
     UncompressedPointSize<C>: ArrayLength<u8>,
 {
     /// Initialize [`VerifyingKey`] from a SEC1-encoded public key
     pub fn new(bytes: &[u8]) -> Result<Self, Error> {
-        let point_result = if bytes.len() == C::FieldSize::to_usize() * 2 {
+        let point_result = if bytes.len() == C::UInt::BYTE_SIZE * 2 {
             Ok(sec1::EncodedPoint::from_untagged_bytes(
                 bytes.try_into().unwrap(),
             ))
@@ -53,7 +50,7 @@ where
 
 impl<C: Curve> Verifier<Signature<C>> for VerifyingKey<C>
 where
-    C: Curve + CurveAlg + Order,
+    C: Curve + CurveAlg,
     SignatureSize<C>: ArrayLength<u8>,
     UntaggedPointSize<C>: Add<U1> + ArrayLength<u8>,
     UncompressedPointSize<C>: ArrayLength<u8>,
