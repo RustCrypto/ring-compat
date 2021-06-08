@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.3.0 (2021-06-08)
+### Changed
+- Bump `ecdsa` to v0.12 ([#45])
+- Bump `p256` to v0.9 ([#45])
+- Bump `p384` to v0.8 ([#45])
+- MSRV 1.51+ ([#45])
+
+[#45]: https://github.com/RustCrypto/ring-compat/pull/45
+
 ## 0.2.1 (2021-04-30)
 ### Changed
 - Rename `VerifyKey` => `VerifyingKey` ([#38])
