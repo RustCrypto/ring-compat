@@ -4,7 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 0.3.0 (2021-06-08)
+## 0.3.2 (2021-09-14)
+- Republishing with identical code to v0.3.1 to update the crates.io description.
+
+## 0.3.1 (2021-06-08)
 ### Changed
 - Bump `ecdsa` to v0.12 ([#45])
 - Bump `p256` to v0.9 ([#45])
@@ -12,6 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - MSRV 1.51+ ([#45])
 
 [#45]: https://github.com/RustCrypto/ring-compat/pull/45
+
+## 0.3.0 [SKIPPED]
 
 ## 0.2.1 (2021-04-30)
 ### Changed
