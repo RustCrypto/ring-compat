@@ -2,9 +2,9 @@
 //!
 //! <https://en.wikipedia.org/wiki/EdDSA>
 
-pub use ed25519::{Signature, SIGNATURE_LENGTH};
+pub use ed25519::Signature;
 
-use super::{Error, Signature as _, Signer, Verifier};
+use super::{Error, Signer, Verifier};
 use core::convert::TryInto;
 use ring::{
     self,
