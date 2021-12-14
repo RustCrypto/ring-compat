@@ -1,6 +1,6 @@
 [package]
 name = "ring-compat"
-version = "0.3.2"
+version = "0.4.0-pre"
 description = """
 Compatibility crate for using RustCrypto's traits with the cryptographic
 algorithm implementations from *ring*
@@ -17,12 +17,12 @@ keywords = ["aead", "digest", "crypto", "ring", "signature"]
 [dependencies]
 aead = { version = "0.4", optional = true, default-features = false }
 digest = { version = "0.9", optional = true }
-ecdsa = { version = "0.12", optional = true, default-features = false }
+ecdsa = { version = "0.13", optional = true, default-features = false }
 ed25519 = { version = "1.3", optional = true, default-features = false }
 generic-array = { version = "0.14", default-features = false }
 opaque-debug = "0.3"
-p256 = { version = "0.9", optional = true, default-features = false, features = ["ecdsa-core"] }
-p384 = { version = "0.8", optional = true, default-features = false, features = ["ecdsa"] }
+p256 = { version = "0.10", optional = true, default-features = false, features = ["ecdsa-core"] }
+p384 = { version = "0.9", optional = true, default-features = false, features = ["ecdsa"] }
 ring = { version = "0.16", default-features = false }
 zeroize = { version = "1", default-features = false }
 
