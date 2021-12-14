@@ -9,13 +9,13 @@ mod signing_key;
 mod verifying_key;
 
 pub use self::{signing_key::SigningKey, verifying_key::VerifyingKey};
-pub use ::ecdsa::{der, elliptic_curve::weierstrass::Curve, Signature};
+pub use ::ecdsa::{der, elliptic_curve::PrimeCurve, Signature};
 
 use ring::signature::{EcdsaSigningAlgorithm, EcdsaVerificationAlgorithm};
 
 /// Trait for associating a *ring* [`EcdsaSigningAlgorithm`] with an
 /// elliptic curve
-pub trait CurveAlg: Curve {
+pub trait CurveAlg: PrimeCurve {
     /// *ring* signing algorithm
     fn signing_alg() -> &'static EcdsaSigningAlgorithm;
 
