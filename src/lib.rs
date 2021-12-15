@@ -1,8 +1,16 @@
-//! Compatibility crate for using [RustCrypto traits] with the cryptographic
-//! algorithm implementations from [*ring*].
+#![doc = include_str!("../README.md")]
+
+//! # Features
 //!
-//! [RustCrypto traits]: https://github.com/RustCrypto/traits
-//! [*ring*]: https://github.com/briansmith/ring
+//! Functionality in this crate is gated under the following features:
+//!
+//! - `aead`: Authenticated Encryption with Associated Data algorithms: AES-GCM, ChaCha20Poly1305
+//! - `digest`: Cryptographic Hash Functions: SHA-1, SHA-256, SHA-384, SHA-512, SHA-512/256
+//! - `signature`: Digital Signature Algorithms, gated under the following features:
+//!   - `ecdsa`: Elliptic Curve Digital Signature Algorithm
+//!   - `ed25519`: Edwards Digital Signature Algorithm instantiated over Curve25519
+//!   - `p256`: ECDSA/NIST P-256
+//!   - `p384`: ECDSA/NIST P-384
 
 #![no_std]
 #![cfg_attr(docsrs, feature(doc_cfg))]

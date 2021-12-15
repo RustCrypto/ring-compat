@@ -6,25 +6,28 @@ Compatibility crate for using RustCrypto's traits with the cryptographic
 algorithm implementations from *ring*
 """
 authors = ["RustCrypto Developers"]
-edition = "2018"
 license = "Apache-2.0 OR MIT"
 readme = "README.md"
 documentation = "https://docs.rs/ring-compat"
 repository = "https://github.com/RustCrypto/ring-compat"
 categories = ["cryptography", "no-std"]
 keywords = ["aead", "digest", "crypto", "ring", "signature"]
+edition = "2021"
+rust-version = "1.56"
 
 [dependencies]
+generic-array = { version = "0.14", default-features = false }
+opaque-debug = "0.3"
+ring = { version = "0.16", default-features = false }
+zeroize = { version = "1", default-features = false }
+
+# optional features
 aead = { version = "0.4", optional = true, default-features = false }
 digest = { version = "0.9", optional = true }
 ecdsa = { version = "0.13", optional = true, default-features = false }
 ed25519 = { version = "1.3", optional = true, default-features = false }
-generic-array = { version = "0.14", default-features = false }
-opaque-debug = "0.3"
 p256 = { version = "0.10", optional = true, default-features = false, features = ["ecdsa-core"] }
 p384 = { version = "0.9", optional = true, default-features = false, features = ["ecdsa"] }
-ring = { version = "0.16", default-features = false }
-zeroize = { version = "1", default-features = false }
 
 [dev-dependencies]
 hex-literal = "0.3"
