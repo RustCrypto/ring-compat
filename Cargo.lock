@@ -268,7 +268,7 @@ dependencies = [
 
 [[package]]
 name = "ring-compat"
-version = "0.4.0-pre"
+version = "0.4.0"
 dependencies = [
  "aead",
  "digest",
