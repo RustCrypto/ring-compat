@@ -36,9 +36,18 @@ jobs:
       - run: cargo test --release --all-features
 
   minimal-versions:
-    uses: RustCrypto/actions/.github/workflows/minimal-versions.yml@master
-    with:
-        working-directory: .
+      - uses: actions/checkout@v1
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          override: true
+          profile: minimal
+      - uses: RustCrypto/actions/cargo-hack-install@master
+      - name: Test benches build
+        run: cargo build --benches
+      - run: rm Cargo.lock
+      - run: cargo update -Z minimal-versions
+      - run: cargo hack test --release --feature-powerset
 
   rustfmt:
     runs-on: ubuntu-latest
