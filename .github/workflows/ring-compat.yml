@@ -35,6 +35,11 @@ jobs:
       - run: cargo test --release
       - run: cargo test --release --all-features
 
+  minimal-versions:
+    uses: RustCrypto/actions/.github/workflows/minimal-versions.yml@master
+    with:
+        working-directory: ${{ github.workflow }}
+
   rustfmt:
     runs-on: ubuntu-latest
     steps:
