@@ -36,3 +36,4 @@ pub mod digest;
 pub mod signature;
 
 pub use generic_array;
+pub use ring;
