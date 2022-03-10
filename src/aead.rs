@@ -12,19 +12,18 @@ use aead::{
 use ring::aead::{
     Aad, LessSafeKey as Key, Nonce, UnboundKey, AES_128_GCM, AES_256_GCM, CHACHA20_POLY1305,
 };
-use zeroize::Zeroize;
 
 /// Authentication tags
 pub type Tag = GenericArray<u8, U16>;
 
 /// AES-GCM with a 128-bit key
-pub struct Aes128Gcm(GenericArray<u8, U16>);
+pub struct Aes128Gcm(Cipher);
 
 /// AES-GCM with a 256-bit key
-pub struct Aes256Gcm(GenericArray<u8, U32>);
+pub struct Aes256Gcm(Cipher);
 
 /// ChaCha20Poly1305
-pub struct ChaCha20Poly1305(GenericArray<u8, U32>);
+pub struct ChaCha20Poly1305(Cipher);
 
 macro_rules! impl_aead {
     ($cipher:ty, $algorithm:expr, $key_size:ty) => {
@@ -32,7 +31,8 @@ macro_rules! impl_aead {
             type KeySize = $key_size;
 
             fn new(key: &GenericArray<u8, Self::KeySize>) -> Self {
-                Self(*key)
+                let key = UnboundKey::new(&$algorithm, key.as_slice()).unwrap();
+                Self(Cipher::new(key))
             }
         }
 
@@ -49,12 +49,8 @@ macro_rules! impl_aead {
                 associated_data: &[u8],
                 buffer: &mut [u8],
             ) -> Result<Tag, Error> {
-                let key = UnboundKey::new(&$algorithm, self.0.as_slice()).unwrap();
-                Cipher::new(key).encrypt_in_place_detached(
-                    nonce.as_slice(),
-                    associated_data,
-                    buffer,
-                )
+                self.0
+                    .encrypt_in_place_detached(nonce.as_slice(), associated_data, buffer)
             }
 
             fn decrypt_in_place(
@@ -63,8 +59,8 @@ macro_rules! impl_aead {
                 associated_data: &[u8],
                 buffer: &mut dyn Buffer,
             ) -> Result<(), Error> {
-                let key = UnboundKey::new(&$algorithm, self.0.as_slice()).unwrap();
-                Cipher::new(key).decrypt_in_place(nonce.as_slice(), associated_data, buffer)
+                self.0
+                    .decrypt_in_place(nonce.as_slice(), associated_data, buffer)
             }
 
             fn decrypt_in_place_detached(
@@ -75,12 +71,6 @@ macro_rules! impl_aead {
                 _tag: &Tag,
             ) -> Result<(), Error> {
                 unimplemented!(); // ring does not allow us to implement this API
-            }
-        }
-
-        impl Drop for $cipher {
-            fn drop(&mut self) {
-                self.0.zeroize();
             }
         }
     };
