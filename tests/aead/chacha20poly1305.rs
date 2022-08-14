@@ -4,7 +4,7 @@
 //! <https://tools.ietf.org/html/rfc8439#section-2.8.2>
 
 use ring_compat::{
-    aead::{Aead, ChaCha20Poly1305, NewAead, Payload},
+    aead::{Aead, ChaCha20Poly1305, KeyInit, Payload},
     generic_array::GenericArray,
 };
 

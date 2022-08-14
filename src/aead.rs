@@ -1,6 +1,6 @@
 //! Authenticated Encryption with Associated Data Algorithms: AES-GCM, ChaCha20Poly1305
 
-pub use aead::{AeadCore, AeadInPlace, Buffer, Error, NewAead};
+pub use aead::{AeadCore, AeadInPlace, Buffer, Error, KeyInit, KeySizeUser};
 
 #[cfg(feature = "alloc")]
 pub use aead::{Aead, Payload};
@@ -27,9 +27,11 @@ pub struct ChaCha20Poly1305(Cipher);
 
 macro_rules! impl_aead {
     ($cipher:ty, $algorithm:expr, $key_size:ty) => {
-        impl NewAead for $cipher {
+        impl KeySizeUser for $cipher {
             type KeySize = $key_size;
+        }
 
+        impl KeyInit for $cipher {
             fn new(key: &GenericArray<u8, Self::KeySize>) -> Self {
                 let key = UnboundKey::new(&$algorithm, key.as_slice()).unwrap();
                 Self(Cipher::new(key))
