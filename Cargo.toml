@@ -22,7 +22,7 @@ ring = { version = "0.16", default-features = false }
 
 # optional features
 aead = { version = "0.5", optional = true, default-features = false }
-digest = { version = "0.9", optional = true }
+digest = { version = "0.10", optional = true }
 ecdsa = { version = "0.13", optional = true, default-features = false }
 ed25519 = { version = "1.4", optional = true, default-features = false }
 p256 = { version = "0.10", optional = true, default-features = false, features = ["ecdsa-core"] }
@@ -30,7 +30,7 @@ p384 = { version = "0.9", optional = true, default-features = false, features = 
 
 [dev-dependencies]
 hex-literal = "0.3"
-digest = { version = "0.9", features = ["dev"] }
+digest = { version = "0.10", features = ["dev"] }
 
 [features]
 default = ["aead", "alloc", "digest", "signature"]
