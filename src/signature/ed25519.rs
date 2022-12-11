@@ -33,7 +33,7 @@ impl SigningKey {
     }
 
     /// Get the [`VerifyingKey`] for this [`SigningKey`].
-    pub fn verify_key(&self) -> VerifyingKey {
+    pub fn verifying_key(&self) -> VerifyingKey {
         VerifyingKey(self.0.public_key().as_ref().try_into().unwrap())
     }
 }
@@ -66,7 +66,7 @@ impl AsRef<[u8]> for VerifyingKey {
 
 impl From<&SigningKey> for VerifyingKey {
     fn from(signing_key: &SigningKey) -> Self {
-        signing_key.verify_key()
+        signing_key.verifying_key()
     }
 }
 
