@@ -58,7 +58,7 @@ macro_rules! impl_digest {
 
         impl Reset for $name {
             fn reset(&mut self) {
-                mem::drop(self.take());
+                self.take();
             }
         }
 
