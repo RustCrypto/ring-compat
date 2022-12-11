@@ -6,6 +6,7 @@ pub use ed25519::Signature;
 
 use super::{Error, Signer, Verifier};
 use core::convert::TryInto;
+use pkcs8::{DecodePrivateKey, PrivateKeyInfo};
 use ring::{
     self,
     signature::{Ed25519KeyPair, KeyPair, UnparsedPublicKey},
@@ -25,16 +26,25 @@ impl SigningKey {
             .map_err(|_| Error::new())
     }
 
-    /// Create a new [`SigningKey`] from a PKCS#8 encoded key.
-    pub fn from_pkcs8(pkcs8_key: &[u8]) -> Result<Self, Error> {
-        Ed25519KeyPair::from_pkcs8(pkcs8_key)
-            .map(SigningKey)
-            .map_err(|_| Error::new())
-    }
-
     /// Get the [`VerifyingKey`] for this [`SigningKey`].
     pub fn verifying_key(&self) -> VerifyingKey {
         VerifyingKey(self.0.public_key().as_ref().try_into().unwrap())
+    }
+}
+
+impl DecodePrivateKey for SigningKey {
+    fn from_pkcs8_der(pkcs8_bytes: &[u8]) -> Result<Self, pkcs8::Error> {
+        Ed25519KeyPair::from_pkcs8(pkcs8_bytes)
+            .map(SigningKey)
+            .map_err(|_| pkcs8::Error::KeyMalformed)
+    }
+}
+
+impl TryFrom<PrivateKeyInfo<'_>> for SigningKey {
+    type Error = pkcs8::Error;
+
+    fn try_from(_: PrivateKeyInfo<'_>) -> Result<Self, pkcs8::Error> {
+        todo!()
     }
 }
 

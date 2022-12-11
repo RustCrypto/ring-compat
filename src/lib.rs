@@ -36,4 +36,6 @@ pub mod digest;
 pub mod signature;
 
 pub use generic_array;
-pub use ring;
+
+#[cfg(feature = "signature")]
+pub use pkcs8;
