@@ -47,8 +47,8 @@ where
     }
 
     /// Initialize a [`SigningKey`] from a raw keypair
-    pub fn from_keypair_bytes(signing_key: &[u8], verify_key: &[u8]) -> Result<Self, Error> {
-        EcdsaKeyPair::from_private_key_and_public_key(C::signing_alg(), signing_key, verify_key)
+    pub fn from_keypair_bytes(signing_key: &[u8], verifying_key: &[u8]) -> Result<Self, Error> {
+        EcdsaKeyPair::from_private_key_and_public_key(C::signing_alg(), signing_key, verifying_key)
             .map(|keypair| Self {
                 keypair,
                 csrng: SystemRandom::new(),
@@ -58,7 +58,7 @@ where
     }
 
     /// Get the [`VerifyingKey`] for this [`SigningKey`]
-    pub fn verify_key(&self) -> VerifyingKey<C>
+    pub fn verifying_key(&self) -> VerifyingKey<C>
     where
         FieldSize<C>: sec1::ModulusSize,
     {

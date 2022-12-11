@@ -18,23 +18,23 @@ fn sign_rfc8032_test_vectors() {
 #[test]
 fn verify_rfc8032_test_vectors() {
     for vector in TEST_VECTORS {
-        let verify_key = VerifyingKey::new(vector.pk).unwrap();
+        let verifying_key = VerifyingKey::new(vector.pk).unwrap();
         let sig = Signature::from_bytes(vector.sig).unwrap();
-        assert!(verify_key.verify(vector.msg, &sig).is_ok());
+        assert!(verifying_key.verify(vector.msg, &sig).is_ok());
     }
 }
 
 #[test]
 fn rejects_tweaked_rfc8032_test_vectors() {
     for vector in TEST_VECTORS {
-        let verify_key = VerifyingKey::new(vector.pk).unwrap();
+        let verifying_key = VerifyingKey::new(vector.pk).unwrap();
 
         let mut tweaked_sig = [0u8; Signature::BYTE_SIZE];
         tweaked_sig.copy_from_slice(vector.sig);
         tweaked_sig[0] ^= 0x42;
 
         let sig = Signature::from_bytes(&tweaked_sig[..]).unwrap();
-        assert!(verify_key.verify(vector.msg, &sig).is_err());
+        assert!(verifying_key.verify(vector.msg, &sig).is_err());
     }
 }
 
