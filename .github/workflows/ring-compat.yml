@@ -57,7 +57,7 @@ jobs:
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
-          toolchain: 1.57.0 # MSRV
+          toolchain: 1.65.0 # MSRV
           components: clippy
           override: true
       - run: cargo clippy --all --all-features -- -D warnings
