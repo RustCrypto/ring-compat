@@ -297,6 +297,7 @@ dependencies = [
  "opaque-debug",
  "p256",
  "p384",
+ "pkcs8",
  "ring",
  "signature",
 ]
