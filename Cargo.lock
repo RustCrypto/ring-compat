@@ -298,6 +298,7 @@ dependencies = [
  "p256",
  "p384",
  "ring",
+ "signature",
 ]
 
 [[package]]
