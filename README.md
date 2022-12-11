@@ -15,7 +15,7 @@ algorithm implementations from [*ring*].
 
 ## Minimum Supported Rust Version
 
-**Rust 1.57** or higher.
+**Rust 1.60** or higher.
 
 In the future the minimum supported Rust version can be changed, but it will be
 done with a minor version bump.
@@ -43,7 +43,7 @@ dual licensed as above, without any additional terms or conditions.
 [docs-link]: https://docs.rs/ring-compat/
 [docs-link]: https://docs.rs/ring-compat
 [ring-image]: https://img.shields.io/badge/ring-0.16-blue.svg
-[rustc-image]: https://img.shields.io/badge/rustc-1.57+-blue.svg
+[rustc-image]: https://img.shields.io/badge/rustc-1.60+-blue.svg
 [license-image]: https://img.shields.io/badge/license-Apache2.0/MIT-blue.svg
 [chat-image]: https://img.shields.io/badge/zulip-join_chat-blue.svg
 [chat-link]: https://rustcrypto.zulipchat.com/#narrow/stream/260488-ring-compat

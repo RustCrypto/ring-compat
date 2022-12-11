@@ -13,7 +13,7 @@ repository = "https://github.com/RustCrypto/ring-compat"
 categories = ["cryptography", "no-std"]
 keywords = ["aead", "digest", "crypto", "ring", "signature"]
 edition = "2021"
-rust-version = "1.57"
+rust-version = "1.60"
 
 [dependencies]
 generic-array = { version = "0.14", default-features = false }
@@ -27,6 +27,7 @@ ecdsa = { version = "0.14", optional = true, default-features = false }
 ed25519 = { version = "1.4", optional = true, default-features = false }
 p256 = { version = "0.11", optional = true, default-features = false, features = ["ecdsa-core"] }
 p384 = { version = "0.11", optional = true, default-features = false, features = ["ecdsa-core"] }
+signature = { version = "1", optional = true, default-features = false }
 
 [dev-dependencies]
 hex-literal = "0.3"
@@ -34,9 +35,9 @@ digest = { version = "0.10", features = ["dev"] }
 
 [features]
 default = ["aead", "alloc", "digest", "signature"]
-alloc = ["aead/alloc"]
-signature = ["ecdsa", "ed25519", "p256", "p384"]
-std = ["digest/std", "ecdsa/std", "ed25519/std"]
+alloc = ["aead?/alloc"]
+signature = ["dep:ecdsa", "dep:ed25519", "dep:p256", "dep:p384", "dep:signature"]
+std = ["digest?/std", "ecdsa?/std", "ed25519?/std"]
 
 [package.metadata.docs.rs]
 all-features = true
