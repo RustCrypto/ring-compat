@@ -39,3 +39,5 @@ pub use generic_array;
 
 #[cfg(feature = "signature")]
 pub use pkcs8;
+
+pub use ring;
