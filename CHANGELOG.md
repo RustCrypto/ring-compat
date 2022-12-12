@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.5.1 (2022-12-12)
+### Added
+- Re-export `ring` ([#102])
+
+[#102]: https://github.com/RustCrypto/ring-compat/pull/102
+
 ## 0.5.0 (2022-12-11)
 ### Added
 - Impl `pkcs8::DecodePrivateKey` for ECDSA and Ed25519 signing keys ([#99])
