@@ -100,7 +100,7 @@ impl Cipher {
     ) -> Result<Tag, Error> {
         self.0
             .seal_in_place_separate_tag(
-                Nonce::try_assume_unique_for_key(nonce).unwrap(),
+                Nonce::try_assume_unique_for_key(nonce).map_err(|_| Error)?,
                 Aad::from(associated_data),
                 buffer,
             )
@@ -117,7 +117,7 @@ impl Cipher {
         let pt_len = self
             .0
             .open_in_place(
-                Nonce::try_assume_unique_for_key(nonce).unwrap(),
+                Nonce::try_assume_unique_for_key(nonce).map_err(|_| Error)?,
                 Aad::from(associated_data),
                 buffer.as_mut(),
             )

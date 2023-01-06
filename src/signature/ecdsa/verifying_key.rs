@@ -28,7 +28,7 @@ where
     pub fn new(bytes: &[u8]) -> Result<Self, Error> {
         let point_result = if bytes.len() == C::UInt::BYTE_SIZE * 2 {
             Ok(sec1::EncodedPoint::<C>::from_untagged_bytes(
-                bytes.try_into().unwrap(),
+                bytes.try_into().map_err(|_| Error::new())?,
             ))
         } else {
             sec1::EncodedPoint::<C>::from_bytes(bytes)

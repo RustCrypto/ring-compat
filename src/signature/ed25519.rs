@@ -50,7 +50,7 @@ impl TryFrom<PrivateKeyInfo<'_>> for SigningKey {
 
 impl Signer<Signature> for SigningKey {
     fn try_sign(&self, msg: &[u8]) -> Result<Signature, Error> {
-        Ok(Signature::from_bytes(self.0.sign(msg).as_ref()).unwrap())
+        Ok(Signature::from_bytes(self.0.sign(msg).as_ref())?)
     }
 }
 
