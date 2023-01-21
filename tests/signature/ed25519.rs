@@ -11,7 +11,7 @@ use ring_compat::signature::{
 fn sign_rfc8032_test_vectors() {
     for vector in TEST_VECTORS {
         let signing_key = SigningKey::from_seed(vector.sk).unwrap();
-        assert_eq!(signing_key.sign(vector.msg).as_ref(), vector.sig);
+        assert_eq!(signing_key.sign(vector.msg).to_bytes(), vector.sig);
     }
 }
 
@@ -19,7 +19,7 @@ fn sign_rfc8032_test_vectors() {
 fn verify_rfc8032_test_vectors() {
     for vector in TEST_VECTORS {
         let verifying_key = VerifyingKey::new(vector.pk).unwrap();
-        let sig = Signature::from_bytes(vector.sig).unwrap();
+        let sig = Signature::try_from(vector.sig).unwrap();
         assert!(verifying_key.verify(vector.msg, &sig).is_ok());
     }
 }
@@ -33,7 +33,7 @@ fn rejects_tweaked_rfc8032_test_vectors() {
         tweaked_sig.copy_from_slice(vector.sig);
         tweaked_sig[0] ^= 0x42;
 
-        let sig = Signature::from_bytes(&tweaked_sig[..]).unwrap();
+        let sig = Signature::try_from(&tweaked_sig[..]).unwrap();
         assert!(verifying_key.verify(vector.msg, &sig).is_err());
     }
 }

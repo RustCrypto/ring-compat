@@ -1,7 +1,7 @@
 //! ECDSA signing key
 
 use super::{CurveAlg, PrimeCurve, Signature, VerifyingKey};
-use crate::signature::{Error, Signature as _, Signer};
+use crate::signature::{Error, Signer};
 use ::ecdsa::{
     elliptic_curve::{sec1, FieldSize},
     SignatureSize,
@@ -93,6 +93,6 @@ where
         self.keypair
             .sign(&self.csrng, msg)
             .map_err(|_| Error::new())
-            .and_then(|sig| Signature::from_bytes(sig.as_ref()))
+            .and_then(|sig| Signature::try_from(sig.as_ref()))
     }
 }

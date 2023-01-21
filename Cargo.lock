@@ -108,9 +108,9 @@ dependencies = [
 
 [[package]]
 name = "ecdsa"
-version = "0.14.8"
+version = "0.15.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "413301934810f597c1d19ca71c8710e99a3f1ba28a0d2ebc01551a2daeea3c5c"
+checksum = "82508ce57bd2b245e9914411800f87fd8fc8288f501bb26919cb9b2ee964028f"
 dependencies = [
  "der",
  "elliptic-curve",
@@ -119,9 +119,9 @@ dependencies = [
 
 [[package]]
 name = "ed25519"
-version = "1.4.1"
+version = "2.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3d5c4b5e5959dc2c2b89918d8e2cc40fcdd623cef026ed09d2f0ee05199dc8e4"
+checksum = "b313941b79fa8f26c1967e351fa7f48a144e2dbeadb6a6fe0ccdfd61ef8ad600"
 dependencies = [
  "signature",
 ]
@@ -136,11 +136,23 @@ dependencies = [
  "crypto-bigint",
  "der",
  "digest",
+ "ff",
  "generic-array",
+ "group",
  "rand_core",
  "sec1",
  "subtle",
  "zeroize",
+]
+
+[[package]]
+name = "ff"
+version = "0.12.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d013fc25338cc558c5c2cfbad646908fb23591e2404481826742b651c9af7160"
+dependencies = [
+ "rand_core",
+ "subtle",
 ]
 
 [[package]]
@@ -162,6 +174,17 @@ dependencies = [
  "cfg-if",
  "libc",
  "wasi",
+]
+
+[[package]]
+name = "group"
+version = "0.12.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5dfbfb3a6cfbd390d5c9564ab283a0349b9b9fcd46a706c1eb10e0db70bfbac7"
+dependencies = [
+ "ff",
+ "rand_core",
+ "subtle",
 ]
 
 [[package]]
@@ -214,22 +237,24 @@ checksum = "624a8340c38c1b80fd549087862da4ba43e08858af025b236e509b6649fc13d5"
 
 [[package]]
 name = "p256"
-version = "0.11.1"
+version = "0.12.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "51f44edd08f51e2ade572f141051021c5af22677e42b7dd28a88155151c33594"
+checksum = "49c124b3cbce43bcbac68c58ec181d98ed6cc7e6d0aa7c3ba97b2563410b0e55"
 dependencies = [
  "ecdsa",
  "elliptic-curve",
+ "primeorder",
 ]
 
 [[package]]
 name = "p384"
-version = "0.11.2"
+version = "0.12.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dfc8c5bf642dde52bb9e87c0ecd8ca5a76faac2eeed98dedb7c717997e1080aa"
+checksum = "630a4a9b2618348ececfae61a4905f564b817063bf2d66cdfc2ced523fe1d2d4"
 dependencies = [
  "ecdsa",
  "elliptic-curve",
+ "primeorder",
 ]
 
 [[package]]
@@ -240,6 +265,15 @@ checksum = "9eca2c590a5f85da82668fa685c09ce2888b9430e83299debf1f34b65fd4a4ba"
 dependencies = [
  "der",
  "spki",
+]
+
+[[package]]
+name = "primeorder"
+version = "0.12.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "49b7e10b3a364b1c813238b1c9a749336cbe51fd4265cd99f57cf29302c90af7"
+dependencies = [
+ "elliptic-curve",
 ]
 
 [[package]]
@@ -262,9 +296,9 @@ dependencies = [
 
 [[package]]
 name = "rand_core"
-version = "0.6.3"
+version = "0.6.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d34f1408f55294453790c48b2f1ebbb1c5b4b7563eb1f418bcfcfdbb06ebb4e7"
+checksum = "ec0be4795e2f6a28069bec0b5ff3e2ac9bafc99e6a9a7dc3547996c5c816922c"
 dependencies = [
  "getrandom",
 ]
@@ -286,7 +320,7 @@ dependencies = [
 
 [[package]]
 name = "ring-compat"
-version = "0.5.0"
+version = "0.6.0-pre"
 dependencies = [
  "aead",
  "digest",
@@ -318,9 +352,9 @@ dependencies = [
 
 [[package]]
 name = "signature"
-version = "1.6.4"
+version = "2.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "74233d3b3b2f6d4b006dc19dee745e73e2a6bfb6f93607cd3b02bd5b00797d7c"
+checksum = "8fe458c98333f9c8152221191a77e2a44e8325d0193484af2e9421a53019e57d"
 dependencies = [
  "rand_core",
 ]
