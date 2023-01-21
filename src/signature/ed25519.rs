@@ -50,7 +50,7 @@ impl TryFrom<PrivateKeyInfo<'_>> for SigningKey {
 
 impl Signer<Signature> for SigningKey {
     fn try_sign(&self, msg: &[u8]) -> Result<Signature, Error> {
-        Signature::from_bytes(self.0.sign(msg).as_ref())
+        Ok(Signature::try_from(self.0.sign(msg).as_ref()).unwrap())
     }
 }
 
@@ -83,7 +83,7 @@ impl From<&SigningKey> for VerifyingKey {
 impl Verifier<Signature> for VerifyingKey {
     fn verify(&self, msg: &[u8], signature: &Signature) -> Result<(), Error> {
         UnparsedPublicKey::new(&ring::signature::ED25519, self.0.as_ref())
-            .verify(msg, signature.as_ref())
+            .verify(msg, &signature.to_bytes())
             .map_err(|_| Error::new())
     }
 }

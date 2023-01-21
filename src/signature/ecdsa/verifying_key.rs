@@ -51,7 +51,7 @@ where
 {
     fn verify(&self, msg: &[u8], sig: &Signature<C>) -> Result<(), Error> {
         UnparsedPublicKey::new(C::verify_alg(), self.0.as_ref())
-            .verify(msg, sig.as_ref())
+            .verify(msg, &sig.to_bytes())
             .map_err(|_| Error::new())
     }
 }
