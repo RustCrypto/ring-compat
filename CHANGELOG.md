@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.6.0 (2023-01-21)
+### Changed
+- Upgrade to `signature` v2-compatible dependencies ([#105])
+
+[#105]: https://github.com/RustCrypto/ring-compat/pull/105
+
 ## 0.5.1 (2022-12-12)
 ### Added
 - Re-export `ring` ([#102])
