@@ -27,7 +27,7 @@ ecdsa = { version = "0.15", optional = true, default-features = false }
 ed25519 = { version = "2", optional = true, default-features = false }
 p256 = { version = "0.12", optional = true, default-features = false, features = ["ecdsa-core"] }
 p384 = { version = "0.12", optional = true, default-features = false, features = ["ecdsa-core"] }
-pkcs8 = { version = "0.9", optional = true, default-features = false }
+pkcs8 = { version = "0.10", optional = true, default-features = false }
 signature = { version = "2", optional = true, default-features = false }
 
 [dev-dependencies]
