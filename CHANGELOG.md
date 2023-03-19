@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.7.0 (2023-03-19)
+### Added
+- `ed25518::SigningIey::from_bytes` ([#114])
+- `ed25519::SigningKey::generate` ([#115])
+- Impl `signature::Keypair` trait ([#116])
+
+### Changed
+- Bump elliptic curve dependencies; MSRV 1.65 ([#112])
+  - `ecdsa` v0.16
+  - `elliptic-curve` v0.13
+  - `p256` v0.13
+  - `p384` v0.13
+  - `pkcs8` v0.10
+- Rename `ed25519::SigningKey::from_seed` => `::from_slice` ([#114])
+- Rename `ed25519::VerifyingKey::new` => `::from_slice` ([#114])
+
+[#112]: https://github.com/RustCrypto/ring-compat/pull/112
+[#114]: https://github.com/RustCrypto/ring-compat/pull/114
+[#115]: https://github.com/RustCrypto/ring-compat/pull/115
+[#116]: https://github.com/RustCrypto/ring-compat/pull/116
+
 ## 0.6.0 (2023-01-21)
 ### Changed
 - Upgrade to `signature` v2-compatible dependencies ([#105])
