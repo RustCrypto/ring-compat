@@ -310,7 +310,7 @@ dependencies = [
 
 [[package]]
 name = "ring-compat"
-version = "0.7.0-pre"
+version = "0.7.0"
 dependencies = [
  "aead",
  "digest",
