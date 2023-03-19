@@ -1,5 +1,5 @@
 #![no_std]
-#![cfg_attr(docsrs, feature(doc_cfg))]
+#![cfg_attr(docsrs, feature(doc_auto_cfg))]
 #![doc = include_str!("../README.md")]
 #![doc(
     html_logo_url = "https://raw.githubusercontent.com/RustCrypto/media/7f79a5e/img/ring-compat/logo-sq.png"
@@ -23,15 +23,12 @@
 extern crate std;
 
 #[cfg(feature = "aead")]
-#[cfg_attr(docsrs, doc(cfg(feature = "aead")))]
 pub mod aead;
 
 #[cfg(feature = "digest")]
-#[cfg_attr(docsrs, doc(cfg(feature = "digest")))]
 pub mod digest;
 
 #[cfg(feature = "signature")]
-#[cfg_attr(docsrs, doc(cfg(feature = "signature")))]
 pub mod signature;
 
 pub use generic_array;
