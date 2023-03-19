@@ -5,10 +5,11 @@
 pub use ed25519::Signature;
 
 use super::{Error, Signer, Verifier};
+use crate::signature::Keypair;
 use core::convert::TryInto;
 use ring::{
     self,
-    signature::{Ed25519KeyPair, KeyPair, UnparsedPublicKey},
+    signature::{Ed25519KeyPair, KeyPair as _, UnparsedPublicKey},
 };
 
 #[cfg(feature = "pkcs8")]
@@ -67,13 +68,25 @@ impl SigningKey {
 
     /// Get the [`VerifyingKey`] for this [`SigningKey`].
     pub fn verifying_key(&self) -> VerifyingKey {
-        VerifyingKey(self.keypair.public_key().as_ref().try_into().unwrap())
+        debug_assert_eq!(self.keypair.public_key().as_ref().len(), 32);
+
+        let mut ret = VerifyingKey(Default::default());
+        ret.0.copy_from_slice(self.keypair.public_key().as_ref());
+        ret
     }
 }
 
 impl Clone for SigningKey {
     fn clone(&self) -> Self {
         Self::from_bytes(&self.seed)
+    }
+}
+
+impl Keypair for SigningKey {
+    type VerifyingKey = VerifyingKey;
+
+    fn verifying_key(&self) -> VerifyingKey {
+        self.verifying_key()
     }
 }
 
