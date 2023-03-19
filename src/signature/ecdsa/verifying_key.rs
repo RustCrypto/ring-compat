@@ -14,13 +14,13 @@ use ring::signature::UnparsedPublicKey;
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct VerifyingKey<C>(sec1::EncodedPoint<C>)
 where
-    C: PrimeCurve + CurveAlg,
+    C: CurveAlg,
     FieldBytesSize<C>: sec1::ModulusSize,
     SignatureSize<C>: ArrayLength<u8>;
 
 impl<C> VerifyingKey<C>
 where
-    C: PrimeCurve + CurveAlg,
+    C: CurveAlg,
     FieldBytesSize<C>: sec1::ModulusSize,
     SignatureSize<C>: ArrayLength<u8>,
 {
@@ -45,7 +45,7 @@ where
 
 impl<C: PrimeCurve> Verifier<Signature<C>> for VerifyingKey<C>
 where
-    C: PrimeCurve + CurveAlg,
+    C: CurveAlg,
     FieldBytesSize<C>: sec1::ModulusSize,
     SignatureSize<C>: ArrayLength<u8>,
 {

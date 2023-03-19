@@ -1,7 +1,7 @@
 //! ECDSA signing key
 
-use super::{CurveAlg, PrimeCurve, Signature, VerifyingKey};
-use crate::signature::{Error, Signer};
+use super::{CurveAlg, Signature, VerifyingKey};
+use crate::signature::{Error, Keypair, Signer};
 use ::ecdsa::{
     elliptic_curve::{sec1, FieldBytesSize},
     SignatureSize,
@@ -12,13 +12,13 @@ use pkcs8::DecodePrivateKey;
 use ring::{
     self,
     rand::SystemRandom,
-    signature::{EcdsaKeyPair, KeyPair},
+    signature::{EcdsaKeyPair, KeyPair as _},
 };
 
 /// ECDSA signing key. Generic over elliptic curves.
 pub struct SigningKey<C>
 where
-    C: PrimeCurve + CurveAlg,
+    C: CurveAlg,
     SignatureSize<C>: ArrayLength<u8>,
 {
     /// *ring* ECDSA keypair
@@ -33,7 +33,7 @@ where
 
 impl<C> SigningKey<C>
 where
-    C: PrimeCurve + CurveAlg,
+    C: CurveAlg,
     SignatureSize<C>: ArrayLength<u8>,
 {
     /// Initialize a [`SigningKey`] from a raw keypair
@@ -58,7 +58,7 @@ where
 
 impl<C> DecodePrivateKey for SigningKey<C>
 where
-    C: PrimeCurve + CurveAlg,
+    C: CurveAlg,
     SignatureSize<C>: ArrayLength<u8>,
 {
     fn from_pkcs8_der(pkcs8_bytes: &[u8]) -> Result<Self, pkcs8::Error> {
@@ -72,9 +72,22 @@ where
     }
 }
 
+impl<C> Keypair for SigningKey<C>
+where
+    C: CurveAlg,
+    FieldBytesSize<C>: sec1::ModulusSize,
+    SignatureSize<C>: ArrayLength<u8>,
+{
+    type VerifyingKey = VerifyingKey<C>;
+
+    fn verifying_key(&self) -> VerifyingKey<C> {
+        self.verifying_key()
+    }
+}
+
 impl<C> Signer<Signature<C>> for SigningKey<C>
 where
-    C: PrimeCurve + CurveAlg,
+    C: CurveAlg,
     SignatureSize<C>: ArrayLength<u8>,
 {
     fn try_sign(&self, msg: &[u8]) -> Result<Signature<C>, Error> {
