@@ -1,6 +1,6 @@
 //! Digest algorithms: SHA-1, SHA-256, SHA-384, SHA-512
 
-use core::mem;
+use core::{fmt, mem};
 use digest::{
     core_api::BlockSizeUser,
     generic_array::{typenum::*, GenericArray},
@@ -62,7 +62,11 @@ macro_rules! impl_digest {
             }
         }
 
-        opaque_debug::implement!($name);
+        impl fmt::Debug for $name {
+            fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+                f.debug_struct(stringify!($name)).finish_non_exhaustive()
+            }
+        }
     };
 }
 

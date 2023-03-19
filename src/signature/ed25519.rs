@@ -6,7 +6,7 @@ pub use ed25519::Signature;
 
 use super::{Error, Signer, Verifier};
 use core::convert::TryInto;
-use pkcs8::{DecodePrivateKey, PrivateKeyInfo};
+use pkcs8::DecodePrivateKey;
 use ring::{
     self,
     signature::{Ed25519KeyPair, KeyPair, UnparsedPublicKey},
@@ -37,14 +37,6 @@ impl DecodePrivateKey for SigningKey {
         Ed25519KeyPair::from_pkcs8(pkcs8_bytes)
             .map(SigningKey)
             .map_err(|_| pkcs8::Error::KeyMalformed)
-    }
-}
-
-impl TryFrom<PrivateKeyInfo<'_>> for SigningKey {
-    type Error = pkcs8::Error;
-
-    fn try_from(_: PrivateKeyInfo<'_>) -> Result<Self, pkcs8::Error> {
-        todo!()
     }
 }
 

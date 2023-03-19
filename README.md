@@ -2,11 +2,11 @@
 
 [![crate][crate-image]][crate-link]
 [![Docs][docs-image]][docs-link]
+[![Build Status][build-image]][build-link]
 ![Ring Version][ring-image]
 ![Rust Version][rustc-image]
 ![Apache2/MIT licensed][license-image]
 [![Project Chat][chat-image]][chat-link]
-[![Build Status][build-image]][build-link]
 
 Compatibility crate for using RustCrypto's [traits] with the cryptographic
 algorithm implementations from [*ring*].
@@ -15,7 +15,7 @@ algorithm implementations from [*ring*].
 
 ## Minimum Supported Rust Version
 
-**Rust 1.60** or higher.
+**Rust 1.65** or higher.
 
 In the future the minimum supported Rust version can be changed, but it will be
 done with a minor version bump.
@@ -41,14 +41,14 @@ dual licensed as above, without any additional terms or conditions.
 [crate-link]: https://crates.io/crates/ring-compat
 [docs-image]: https://docs.rs/ring-compat/badge.svg
 [docs-link]: https://docs.rs/ring-compat/
+[build-image]: https://github.com/RustCrypto/ring-compat/workflows/ring-compat/badge.svg?branch=master&event=push
+[build-link]: https://github.com/RustCrypto/ring-compat/actions
 [docs-link]: https://docs.rs/ring-compat
 [ring-image]: https://img.shields.io/badge/ring-0.16-blue.svg
-[rustc-image]: https://img.shields.io/badge/rustc-1.60+-blue.svg
+[rustc-image]: https://img.shields.io/badge/rustc-1.65+-blue.svg
 [license-image]: https://img.shields.io/badge/license-Apache2.0/MIT-blue.svg
 [chat-image]: https://img.shields.io/badge/zulip-join_chat-blue.svg
 [chat-link]: https://rustcrypto.zulipchat.com/#narrow/stream/260488-ring-compat
-[build-image]: https://github.com/RustCrypto/ring-compat/workflows/ring-compat/badge.svg?branch=master&event=push
-[build-link]: https://github.com/RustCrypto/ring-compat/actions
 
 [//]: # (general links)
 
