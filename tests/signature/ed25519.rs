@@ -10,7 +10,7 @@ use ring_compat::signature::{
 #[test]
 fn sign_rfc8032_test_vectors() {
     for vector in TEST_VECTORS {
-        let signing_key = SigningKey::from_seed(vector.sk).unwrap();
+        let signing_key = SigningKey::from_slice(vector.sk).unwrap();
         assert_eq!(signing_key.sign(vector.msg).to_bytes(), vector.sig);
     }
 }
@@ -18,7 +18,7 @@ fn sign_rfc8032_test_vectors() {
 #[test]
 fn verify_rfc8032_test_vectors() {
     for vector in TEST_VECTORS {
-        let verifying_key = VerifyingKey::new(vector.pk).unwrap();
+        let verifying_key = VerifyingKey::from_slice(vector.pk).unwrap();
         let sig = Signature::try_from(vector.sig).unwrap();
         assert!(verifying_key.verify(vector.msg, &sig).is_ok());
     }
@@ -27,7 +27,7 @@ fn verify_rfc8032_test_vectors() {
 #[test]
 fn rejects_tweaked_rfc8032_test_vectors() {
     for vector in TEST_VECTORS {
-        let verifying_key = VerifyingKey::new(vector.pk).unwrap();
+        let verifying_key = VerifyingKey::from_slice(vector.pk).unwrap();
 
         let mut tweaked_sig = [0u8; Signature::BYTE_SIZE];
         tweaked_sig.copy_from_slice(vector.sig);
