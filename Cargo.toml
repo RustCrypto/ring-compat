@@ -27,6 +27,7 @@ ed25519 = { version = "2", optional = true, default-features = false }
 p256 = { version = "0.13", optional = true, default-features = false, features = ["ecdsa-core"] }
 p384 = { version = "0.13", optional = true, default-features = false, features = ["ecdsa-core"] }
 pkcs8 = { version = "0.10", optional = true, default-features = false }
+rand_core = { version = "0.6.4", optional = true, default-features = false }
 signature = { version = "2", optional = true, default-features = false }
 
 [dev-dependencies]
@@ -34,8 +35,10 @@ hex-literal = "0.3"
 digest = { version = "0.10", features = ["dev"] }
 
 [features]
-default = ["aead", "alloc", "digest", "signature"]
-alloc = ["aead?/alloc", "pkcs8?/alloc"]
+default = ["aead", "alloc", "digest", "rand_core", "signature"]
+alloc = ["aead?/alloc", "ed25519?/alloc", "pkcs8?/alloc"]
+getrandom = ["rand_core/getrandom"]
+pkcs8 = ["dep:pkcs8", "ed25519?/pkcs8"]
 signature = ["dep:ecdsa", "dep:ed25519", "dep:p256", "dep:p384", "dep:pkcs8", "dep:signature"]
 std = ["digest?/std", "ecdsa?/std", "ed25519?/std", "pkcs8?/std"]
 

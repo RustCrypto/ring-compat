@@ -123,6 +123,7 @@ version = "2.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "be522bee13fa6d8059f4903a4084aa3bd50725e18150202f0238deb615cd6371"
 dependencies = [
+ "pkcs8",
  "signature",
 ]
 
@@ -320,6 +321,7 @@ dependencies = [
  "p256",
  "p384",
  "pkcs8",
+ "rand_core",
  "ring",
  "signature",
 ]
