@@ -3,12 +3,12 @@
 use super::{CurveAlg, PrimeCurve, Signature, VerifyingKey};
 use crate::signature::{Error, Signer};
 use ::ecdsa::{
-    elliptic_curve::{sec1, FieldSize},
+    elliptic_curve::{sec1, FieldBytesSize},
     SignatureSize,
 };
 use core::marker::PhantomData;
 use generic_array::ArrayLength;
-use pkcs8::{DecodePrivateKey, PrivateKeyInfo};
+use pkcs8::DecodePrivateKey;
 use ring::{
     self,
     rand::SystemRandom,
@@ -50,7 +50,7 @@ where
     /// Get the [`VerifyingKey`] for this [`SigningKey`]
     pub fn verifying_key(&self) -> VerifyingKey<C>
     where
-        FieldSize<C>: sec1::ModulusSize,
+        FieldBytesSize<C>: sec1::ModulusSize,
     {
         VerifyingKey::new(self.keypair.public_key().as_ref()).unwrap()
     }
@@ -69,18 +69,6 @@ where
                 curve: PhantomData,
             })
             .map_err(|_| pkcs8::Error::KeyMalformed)
-    }
-}
-
-impl<C> TryFrom<PrivateKeyInfo<'_>> for SigningKey<C>
-where
-    C: PrimeCurve + CurveAlg,
-    SignatureSize<C>: ArrayLength<u8>,
-{
-    type Error = pkcs8::Error;
-
-    fn try_from(_: PrivateKeyInfo<'_>) -> Result<Self, pkcs8::Error> {
-        todo!()
     }
 }
 

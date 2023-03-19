@@ -1,4 +1,11 @@
+#![no_std]
+#![cfg_attr(docsrs, feature(doc_cfg))]
 #![doc = include_str!("../README.md")]
+#![doc(
+    html_logo_url = "https://raw.githubusercontent.com/RustCrypto/media/7f79a5e/img/ring-compat/logo-sq.png"
+)]
+#![forbid(unsafe_code)]
+#![warn(missing_docs, rust_2018_idioms)]
 
 //! # Features
 //!
@@ -11,14 +18,6 @@
 //!   - `ed25519`: Edwards Digital Signature Algorithm instantiated over Curve25519
 //!   - `p256`: ECDSA/NIST P-256
 //!   - `p384`: ECDSA/NIST P-384
-
-#![no_std]
-#![cfg_attr(docsrs, feature(doc_cfg))]
-#![doc(
-    html_logo_url = "https://raw.githubusercontent.com/RustCrypto/media/7f79a5e/img/ring-compat/logo-sq.png"
-)]
-#![forbid(unsafe_code)]
-#![warn(missing_docs, rust_2018_idioms)]
 
 #[cfg(feature = "std")]
 extern crate std;
