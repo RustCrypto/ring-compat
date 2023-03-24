@@ -39,7 +39,7 @@ impl SigningKey {
     /// Create a new [`SigningKey`] from an unexpanded seed value (32-bytes).
     pub fn from_bytes(seed: &[u8; Self::SIZE]) -> Self {
         let keypair = Ed25519KeyPair::from_seed_unchecked(seed)
-            .expect("all 32-byte values should be valied Ed25519 signing keys");
+            .expect("all 32-byte values should be valid Ed25519 signing keys");
 
         Self {
             keypair,
