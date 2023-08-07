@@ -3,7 +3,7 @@
 use super::common::TestVector;
 use hex_literal::hex;
 use ring_compat::{
-    aead::{Aead, AeadInPlace, Aes128Gcm, NewAead, Payload},
+    aead::{Aead, AeadInPlace, Aes128Gcm, KeyInit, Payload},
     generic_array::GenericArray,
 };
 

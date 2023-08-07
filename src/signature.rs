@@ -3,4 +3,4 @@
 pub mod ecdsa;
 pub mod ed25519;
 
-pub use ::ecdsa::signature::{Error, Signature, Signer, Verifier};
+pub use ::signature::{Error, Keypair, SignatureEncoding, Signer, Verifier};

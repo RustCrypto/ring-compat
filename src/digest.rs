@@ -1,9 +1,10 @@
 //! Digest algorithms: SHA-1, SHA-256, SHA-384, SHA-512
 
-use core::mem;
+use core::{fmt, mem};
 use digest::{
+    core_api::BlockSizeUser,
     generic_array::{typenum::*, GenericArray},
-    BlockInput, FixedOutput, Reset, Update,
+    FixedOutput, FixedOutputReset, OutputSizeUser, Reset, Update,
 };
 use ring::digest::Context;
 
@@ -30,22 +31,26 @@ macro_rules! impl_digest {
         }
 
         impl Update for $name {
-            fn update(&mut self, data: impl AsRef<[u8]>) {
+            fn update(&mut self, data: &[u8]) {
                 self.0.update(data.as_ref())
             }
         }
 
-        impl BlockInput for $name {
+        impl BlockSizeUser for $name {
             type BlockSize = $block_len;
         }
 
-        impl FixedOutput for $name {
+        impl OutputSizeUser for $name {
             type OutputSize = $output_size;
+        }
 
+        impl FixedOutput for $name {
             fn finalize_into(self, out: &mut GenericArray<u8, Self::OutputSize>) {
                 *out = GenericArray::clone_from_slice(self.0.finish().as_ref());
             }
+        }
 
+        impl FixedOutputReset for $name {
             fn finalize_into_reset(&mut self, out: &mut GenericArray<u8, Self::OutputSize>) {
                 *out = GenericArray::clone_from_slice(self.take().finish().as_ref());
             }
@@ -53,12 +58,15 @@ macro_rules! impl_digest {
 
         impl Reset for $name {
             fn reset(&mut self) {
-                mem::drop(self.take());
+                self.take();
             }
         }
 
-        digest::impl_write!($name);
-        opaque_debug::implement!($name);
+        impl fmt::Debug for $name {
+            fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+                f.debug_struct(stringify!($name)).finish_non_exhaustive()
+            }
+        }
     };
 }
 
