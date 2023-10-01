@@ -16,7 +16,7 @@ edition = "2021"
 rust-version = "1.65"
 
 [dependencies]
-generic-array = { version = "0.14", default-features = false }
+generic-array = { version = "1.0", default-features = false }
 ring = { version = "0.16.20", default-features = false }
 
 # optional dependencies
