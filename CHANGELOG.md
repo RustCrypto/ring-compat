@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.8.0 (2023-10-07)
+### Changed
+- Bump *ring* dependency from v0.16 to v0.17 ([#134])
+
+[#134]: https://github.com/RustCrypto/ring-compat/pull/134
+
 ## 0.7.0 (2023-03-19)
 ### Added
 - `ed25518::SigningIey::from_bytes` ([#114])
