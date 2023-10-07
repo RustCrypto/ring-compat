@@ -32,23 +32,23 @@ use ring_compat::digest::*;
 #[test]
 fn test_block_len() {
     assert_eq!(
-        ring::digest::SHA1_FOR_LEGACY_USE_ONLY.block_len,
+        ring::digest::SHA1_FOR_LEGACY_USE_ONLY.block_len(),
         <Sha1 as BlockSizeUser>::BlockSize::to_usize()
     );
     assert_eq!(
-        ring::digest::SHA256.block_len,
+        ring::digest::SHA256.block_len(),
         <Sha256 as BlockSizeUser>::BlockSize::to_usize()
     );
     assert_eq!(
-        ring::digest::SHA384.block_len,
+        ring::digest::SHA384.block_len(),
         <Sha384 as BlockSizeUser>::BlockSize::to_usize()
     );
     assert_eq!(
-        ring::digest::SHA512.block_len,
+        ring::digest::SHA512.block_len(),
         <Sha512 as BlockSizeUser>::BlockSize::to_usize()
     );
     assert_eq!(
-        ring::digest::SHA512_256.block_len,
+        ring::digest::SHA512_256.block_len(),
         <Sha512Trunc256 as BlockSizeUser>::BlockSize::to_usize()
     );
 }
@@ -56,23 +56,23 @@ fn test_block_len() {
 #[test]
 fn test_output_len() {
     assert_eq!(
-        ring::digest::SHA1_FOR_LEGACY_USE_ONLY.output_len,
+        ring::digest::SHA1_FOR_LEGACY_USE_ONLY.output_len(),
         <Sha1 as OutputSizeUser>::OutputSize::to_usize()
     );
     assert_eq!(
-        ring::digest::SHA256.output_len,
+        ring::digest::SHA256.output_len(),
         <Sha256 as OutputSizeUser>::OutputSize::to_usize()
     );
     assert_eq!(
-        ring::digest::SHA384.output_len,
+        ring::digest::SHA384.output_len(),
         <Sha384 as OutputSizeUser>::OutputSize::to_usize()
     );
     assert_eq!(
-        ring::digest::SHA512.output_len,
+        ring::digest::SHA512.output_len(),
         <Sha512 as OutputSizeUser>::OutputSize::to_usize()
     );
     assert_eq!(
-        ring::digest::SHA512_256.output_len,
+        ring::digest::SHA512_256.output_len(),
         <Sha512Trunc256 as OutputSizeUser>::OutputSize::to_usize()
     );
 }

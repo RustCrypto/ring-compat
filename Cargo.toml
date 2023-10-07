@@ -1,6 +1,6 @@
 [package]
 name = "ring-compat"
-version = "0.7.0"
+version = "0.8.0-pre"
 description = """
 Compatibility crate for using RustCrypto's traits with the cryptographic
 algorithm implementations from *ring*
@@ -17,7 +17,7 @@ rust-version = "1.65"
 
 [dependencies]
 generic-array = { version = "0.14", default-features = false }
-ring = { version = "0.16.20", default-features = false }
+ring = { version = "0.17", default-features = false }
 
 # optional dependencies
 aead = { version = "0.5", optional = true, default-features = false }
