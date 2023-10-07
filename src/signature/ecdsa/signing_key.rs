@@ -2,11 +2,11 @@
 
 use super::{CurveAlg, Signature, VerifyingKey};
 use crate::signature::{Error, Keypair, Signer};
-use ::ecdsa::{
+use core::marker::PhantomData;
+use ecdsa::{
     elliptic_curve::{sec1, FieldBytesSize},
     SignatureSize,
 };
-use core::marker::PhantomData;
 use generic_array::ArrayLength;
 use pkcs8::DecodePrivateKey;
 use ring::{
@@ -38,13 +38,21 @@ where
 {
     /// Initialize a [`SigningKey`] from a raw keypair
     pub fn from_keypair_bytes(signing_key: &[u8], verifying_key: &[u8]) -> Result<Self, Error> {
-        EcdsaKeyPair::from_private_key_and_public_key(C::signing_alg(), signing_key, verifying_key)
-            .map(|keypair| Self {
-                keypair,
-                csrng: SystemRandom::new(),
-                curve: PhantomData,
-            })
-            .map_err(|_| Error::new())
+        let csrng = SystemRandom::new();
+
+        let keypair = EcdsaKeyPair::from_private_key_and_public_key(
+            C::signing_alg(),
+            signing_key,
+            verifying_key,
+            &csrng,
+        )
+        .map_err(|_| Error::new())?;
+
+        Ok(Self {
+            keypair,
+            csrng,
+            curve: PhantomData,
+        })
     }
 
     /// Get the [`VerifyingKey`] for this [`SigningKey`]
@@ -62,13 +70,16 @@ where
     SignatureSize<C>: ArrayLength<u8>,
 {
     fn from_pkcs8_der(pkcs8_bytes: &[u8]) -> Result<Self, pkcs8::Error> {
-        EcdsaKeyPair::from_pkcs8(C::signing_alg(), pkcs8_bytes)
-            .map(|keypair| Self {
-                keypair,
-                csrng: SystemRandom::new(),
-                curve: PhantomData,
-            })
-            .map_err(|_| pkcs8::Error::KeyMalformed)
+        let csrng = SystemRandom::new();
+
+        let keypair = EcdsaKeyPair::from_pkcs8(C::signing_alg(), pkcs8_bytes, &csrng)
+            .map_err(|_| pkcs8::Error::KeyMalformed)?;
+
+        Ok(Self {
+            keypair,
+            csrng,
+            curve: PhantomData,
+        })
     }
 }
 

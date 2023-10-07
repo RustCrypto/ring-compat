@@ -44,7 +44,7 @@ dual licensed as above, without any additional terms or conditions.
 [build-image]: https://github.com/RustCrypto/ring-compat/workflows/ring-compat/badge.svg?branch=master&event=push
 [build-link]: https://github.com/RustCrypto/ring-compat/actions
 [docs-link]: https://docs.rs/ring-compat
-[ring-image]: https://img.shields.io/badge/ring-0.16-blue.svg
+[ring-image]: https://img.shields.io/badge/ring-0.17-blue.svg
 [rustc-image]: https://img.shields.io/badge/rustc-1.65+-blue.svg
 [license-image]: https://img.shields.io/badge/license-Apache2.0/MIT-blue.svg
 [chat-image]: https://img.shields.io/badge/zulip-join_chat-blue.svg
